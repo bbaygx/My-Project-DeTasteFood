@@ -7,7 +7,12 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path="user">
+          <Route path="login"/>
+          <Route path="daftar"/>
+        </Route>
         <Route path='/restaurant' element={<Restaurant />} />
+        <Route path="*" element={<h1>Page Not Found</h1>}/>
       </Routes>
       <Footer />
     </>

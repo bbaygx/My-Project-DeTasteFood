@@ -3,3 +3,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active span{
+    color: rgb(35, 34, 34)
+}
+
+/* CSS */
+/* Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Firefox */
+  .scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  

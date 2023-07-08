@@ -1,0 +1,47 @@
+[
+    {
+        "id": "makanan",
+        "nama_kuliner": "Makanan",
+        "page": "makanan"
+    },
+    {
+        "id": "jajanan",
+        "nama_kuliner": "Jajanan",
+        "page": "jajanan"
+    },
+    {
+        "id": "sweets",
+        "nama_kuliner": "Sweets",
+        "page": "Sweets"
+    },
+    {
+        "id": "Aneka nasi",
+        "nama_kuliner": "aneka nasi",
+        "page": "aneka nasi"
+    },
+    {
+        "id": "Ayam & bebek",
+        "nama_kuliner": "ayam & bebek",
+        "page": "ayam & bebek"
+    },
+    {
+        "id": "cepet saji",
+        "nama_kuliner": "Cepet saji",
+        "page": "cepet saji"
+    },
+    {
+        "id": "Roti",
+        "nama_kuliner": "roti",
+        "page": "roti"
+    },
+    {
+        "id": "jepang",
+        "nama_kuliner": "Jepang",
+        "page": "jepang"
+    },
+    {
+        "id": "soto & bakso",
+        "nama_kuliner": "Soto & bakso",
+        "page": "soto & bakso"
+    }
+]

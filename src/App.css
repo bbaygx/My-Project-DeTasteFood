@@ -1,0 +1,9 @@
+/* CSS */
+
+body {
+  overflow-x: hidden;
+}
+/* Webkit (Chrome, Safari) */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
