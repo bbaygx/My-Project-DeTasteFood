@@ -15,13 +15,13 @@
         "page": "Sweets"
     },
     {
-        "id": "Aneka nasi",
-        "nama_kuliner": "aneka nasi",
+        "id": "aneka nasi",
+        "nama_kuliner": "Aneka nasi",
         "page": "aneka nasi"
     },
     {
         "id": "Ayam & bebek",
-        "nama_kuliner": "ayam & bebek",
+        "nama_kuliner": "Ayam & bebek",
         "page": "ayam & bebek"
     },
     {
@@ -30,8 +30,8 @@
         "page": "cepet saji"
     },
     {
-        "id": "Roti",
-        "nama_kuliner": "roti",
+        "id": "roti",
+        "nama_kuliner": "Roti",
         "page": "roti"
     },
     {

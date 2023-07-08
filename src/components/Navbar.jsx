@@ -26,7 +26,6 @@ const Navbar = () => {
     const [openSearch, setOpenSearch] = useState(false)
     const [input, setInput] = useState([])
     const [like, setLike] = useState(false)
-    const scrollContainerRef = useRef(null);
 
 
 
@@ -52,29 +51,6 @@ const Navbar = () => {
         }
     }
 
-
-    // Nav Scroll
-
-    // const [isDragging, setIsDragging] = useState(false);
-    // const [startX, setStartX] = useState(null);
-    // const [scrollLeft, setScrollLeft] = useState(0);
-
-    // const handleTouchStart = (event) => {
-    //     setIsDragging(true);
-    //     setStartX(event.touches[0].clientX);
-    //     setScrollLeft(scrollContainerRef.current.scrollLeft);
-    // };
-
-    // const handleTouchMove = (event) => {
-    //     if (!isDragging) return;
-    //     const x = event.touches[0].clientX;
-    //     const scrollX = startX - x;
-    //     scrollContainerRef.current.scrollLeft = scrollLeft + scrollX;
-    // };
-
-    // const handleTouchEnd = () => {
-    //     setIsDragging(false);
-    // };
 
 
     return (
@@ -120,21 +96,29 @@ const Navbar = () => {
                             <label tabIndex={0} className="btn btn-ghost btn-circle">
                                 <HiOutlineMenuAlt2 className='w-5 h-5' />
                             </label>
-                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Homepage</a></li>
-                                <li><a>Portfolio</a></li>
-                                <li><a>About</a></li>
+                            <ul tabIndex={0} className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a>Menu List</a></li>
+                                <li>
+                                    <details open className='md:hidden'>
+                                        <summary>Catalog</summary>
+                                        <ul>
+                                            <li><a>item 1</a></li>
+                                            <li><a>item 2</a></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li><a>Menu</a></li>
                             </ul>
                         </div>
                         <a className="font-bold normal-case text-base lg:text-xl">De Taste Food</a>
 
-                        <div className="dropdown dropdown-bottom fixed bg-base-200 cursor-pointer shadow-md mx-2 p-3 rounded-md top-60 md:hidden">
+                        {/* <div className="dropdown dropdown-bottom fixed z-50 bg-white cursor-pointer shadow-md mx-2 p-3 rounded-md top-60  md:hidden">
                             <BsMenuApp className='w-6 h-6' tabIndex={0} />
                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><a>Item 1</a></li>
                                 <li><a>Item 2</a></li>
                             </ul>
-                        </div>
+                        </div> */}
 
 
                     </div>
@@ -142,7 +126,7 @@ const Navbar = () => {
                         <div className="dropdown dropdown-bottom bg-base-100 py-1 px-5 font-medium cursor-pointer border-2 hidden md:flex md:gap-2 md:items-center md:rounded-full md:mr-3">
                             <HiOutlineMenuAlt4 className='w-5 h-5 cursor-pointer' />
                             <label tabIndex={0} className="m-1 cursor-pointer">Catalog</label>
-                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52">
                                 <li><a>Item 1</a></li>
                                 <li><a>Item 2</a></li>
                             </ul>
@@ -175,42 +159,52 @@ const Navbar = () => {
                 </div>
             </nav>
             <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper flex py-5 space-x-3 overflow-x-hidden smooth-scroll scale-x-95 duration-300 justify-center"
-      >
-                        {dataKuliner.map(item => (
-                        <SwiperSlide>
-                        <a href={item.page} className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" key={item.id}>
-                                        {item.nama_kuliner}
-                                    </a>
-                        </SwiperSlide>
-                ))}
-  
- 
-      </Swiper>
-            {/* <div
-                className="flex py-5 space-x-3 overflow-x-hidden smooth-scroll scale-x-95 duration-300 justify-center"
-                // ref={scrollContainerRef}
-                // onTouchStart={handleTouchStart}
-                // onTouchMove={handleTouchMove}
-                // onTouchEnd={handleTouchEnd}
-                // onWheel={(event) => {
-                //     event.preventDefault();
-                //     scrollContainerRef.current.scrollLeft += event.deltaY;
-                // }}
-                tabIndex="0"
+                slidesPerView={6}
+                spaceBetween={20}
+                pagination={{
+                    clickable: true,
+                }}
+                breakpoints={{
+                    350: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+
+                    400: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+
+                    512: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    640: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                    768: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                    },
+                    1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                    },
+                }}
+                className="mySwiper flex py-5 space-x-3 overflow-x-hidden smooth-scroll scale-x-90 duration-300 justify-center"
             >
                 {dataKuliner.map(item => (
-                    <a href={item.page} className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg" key={item.id}>
-                        {item.nama_kuliner}
-                    </a>
+                    <SwiperSlide className='my-5 m-auto'>
+                        <a href={item.page} className="px-8 py-8 text-center rounded-full font-medium" key={item.id}>
+                            {item.nama_kuliner}
+                        </a>
+                    </SwiperSlide>
                 ))}
 
-            </div> */}
+
+            </Swiper>
+
 
             <SearchInput openSearch={openSearch} />
         </>
