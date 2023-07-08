@@ -1,7 +1,12 @@
 import React from 'react'
 import Carousel from "../helpers/Carousel"
 import { FaFilter } from 'react-icons/fa'
+import { useParams } from 'react-router-dom'
 const Restaurant = () => {
+
+  const { region } = useParams()
+
+
   return (
     <>
       <header className='w-[90%] m-auto mt-5 bg-slate-100 rounded-md'>
@@ -10,7 +15,8 @@ const Restaurant = () => {
             <h1 className='text-2xl font-karla '>
               Select Food Region :
             </h1>
-            <p className='text-4xl mt-2 font-rowdies'>Jakarta</p>
+            <p className='text-4xl mt-2 font-rowdies'>{region.charAt(0).toUpperCase() + region.slice(1)}</p>
+            <p className='mt-5'>Discover what's good to eat and drink here, from local best sellers to culinary legends.</p>
           </div>
           <div className="bannerImage hidden">
             <img src="https://media-cdn.tripadvisor.com/media/photo-s/06/ca/7d/be/bar-35-food-drinks.jpg" alt="" className='w-52' />

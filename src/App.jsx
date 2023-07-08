@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom"
 import { Home, Restaurant } from './pages'
-import { Footer } from './components'
+import { Footer, Navbar } from './components'
 
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
+
         <Route path="user">
           <Route path="login"/>
           <Route path="daftar"/>
