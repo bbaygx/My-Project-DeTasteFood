@@ -11,7 +11,7 @@ function App() {
           <Route path="login"/>
           <Route path="daftar"/>
         </Route>
-        <Route path='/restaurant' element={<Restaurant />} />
+        <Route path='/restaurant/:region' element={<Restaurant />} />
         <Route path="*" element={<h1>Page Not Found</h1>}/>
       </Routes>
       <Footer />
