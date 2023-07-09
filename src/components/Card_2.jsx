@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const Card = () => {
+const Card_2 = () => {
   return (
     <>
 <div className="my-32 mx-4">
   <div className="flex justify-between py-7 px-3">
-  <h1 className='text-xl sm:text-2xl font-semibold'>Recomanded For You</h1>
+  <h1 className='text-xl sm:text-2xl font-semibold'>Promo For You</h1>
   <Link to="restaurant/jakarta" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight/></Link>
   </div>
       <Swiper
@@ -85,5 +85,5 @@ const Card = () => {
   )
 }
 
-export default Card
+export default Card_2
 

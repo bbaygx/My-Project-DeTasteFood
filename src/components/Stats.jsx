@@ -5,7 +5,7 @@ const Stats = () => {
     return (
         <>
             <div className="mx-6">
-                <div className="my-32 m-auto flex justify-between flex-wrap gap-5 sm:flex-none overflow-x-hidden sm:flex-wrap md:flex-nowrap md:px-10">
+                <div className="my-20 m-auto flex justify-between flex-wrap gap-5 sm:flex-none overflow-x-hidden sm:flex-wrap md:flex-nowrap md:px-10">
 
 
                 <div className="flex flex-wrap gap-5 justify-evenly md:justify-around py-3 items-center">

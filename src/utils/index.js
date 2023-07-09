@@ -13,9 +13,9 @@ import cardItem from "./card.json"
 
 
 export {IoCall, BsMenuApp, HiOutlineMenuAlt2,
-     AiOutlineSearch, AiOutlineHeart, AiFillHeart
+     AiOutlineSearch, AiOutlineHeart
     ,MdDiscount, FiSearch,FiShoppingCart,HiOutlineMenuAlt4,BiLogoGmail,BiSolidTimeFive
-    ,LuCar,BsEmojiSmile,IoFastFoodOutline,AiOutlineHeart,AiFillHeart,AiFillStar,BsArrowRight
+    ,LuCar,BsEmojiSmile,IoFastFoodOutline,AiFillHeart,AiFillStar,BsArrowRight
 }
 
 
