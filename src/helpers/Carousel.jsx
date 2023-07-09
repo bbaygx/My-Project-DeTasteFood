@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { AiFillStar, AiOutlineHeart } from "react-icons/ai"
-import { BiSolidTimeFive } from 'react-icons/bi'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { BiSolidTimeFive,AiFillStar } from "../utils"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import axios from 'axios';

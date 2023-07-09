@@ -6,10 +6,13 @@ import { Card, Footer, Navbar, Hero, Header, Main, Stats } from '../components'
 const Home = () => {
   return (
     <>
-      <Header />
-      <Hero />
-      <Main />
-      <Stats />
+      <Header>
+        <Hero/>
+      </Header>
+      <Main>
+        <Stats/>
+        <Card/>
+      </Main>
     </>
   )
 }
