@@ -3,7 +3,7 @@ import HeroHamburger from "../assets/hero_hamburger_2.jpg"
 const Hero = () => {
   return (
     <>
-      <div className="hero container m-auto min-h-[70vh] bg-base-100">
+      <div className="hero m-auto min-h-[70vh] bg-base-100">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img src={HeroHamburger} className="max-w-xs sm:max-w-sm md:max-w-md rounded-lg shadow-2xl" />
         <div className='p-5'>

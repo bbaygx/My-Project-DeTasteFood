@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { AiFillStar, AiOutlineHeart } from "react-icons/ai"
-import { BiSolidTimeFive } from 'react-icons/bi'
+import { BiSolidTimeFive,AiFillStar } from "../utils"
 import 'swiper/css';
 import 'swiper/css/pagination';
 export default function Carousel({ count }) {

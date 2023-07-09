@@ -7,4 +7,4 @@ import SearchInput from "./SearchInput";
 import Main from "./Main";
 import Stats from "./Stats";
 
-export { Card,Stats, Hero, Navbar, Main, Footer, Header, SearchInput };
+export { Stats, Hero, Navbar, Main, Footer, Header, SearchInput, Card };
