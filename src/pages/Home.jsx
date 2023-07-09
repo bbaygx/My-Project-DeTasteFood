@@ -1,18 +1,15 @@
 import React from 'react'
 
-import { Card, Footer, Navbar, Hero, Header,Main,Stats } from '../components'
+import { Card, Footer, Navbar, Hero, Header, Main, Stats } from '../components'
 
 
 const Home = () => {
   return (
     <>
-
-      <Header>
-        <Hero/>
-      </Header>
-      <Main>
-        <Stats/>
-      </Main>
+      <Header />
+      <Hero />
+      <Main />
+      <Stats />
     </>
   )
 }

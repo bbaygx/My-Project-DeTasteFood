@@ -10,11 +10,11 @@ function App() {
         <Route path='/' element={<Home />} />
 
         <Route path="user">
-          <Route path="login"/>
-          <Route path="daftar"/>
+          <Route path="login" />
+          <Route path="daftar" />
         </Route>
         <Route path='/restaurant/:region' element={<Restaurant />} />
-        <Route path="*" element={<h1>Page Not Found</h1>}/>
+        <Route path="*" element={<h1>Page Not Found</h1>} />
       </Routes>
       <Footer />
     </>

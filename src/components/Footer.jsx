@@ -2,7 +2,7 @@
 const Footer = () => {
   return (
     <>
-      <footer>
+      <footer className="ring-1 ring-slate-200">
         <div className="container mx-auto px-6 pt-10 pb-6 mt-20">
           <div className="flex flex-wrap justify-between">
             <ul className="mb-4">

@@ -1,10 +1,45 @@
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AiFillStar, AiOutlineHeart } from "react-icons/ai"
 import { BiSolidTimeFive } from 'react-icons/bi'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import axios from 'axios';
+// import { useQuery } from 'react-query';
+import useFetch from '../hooks/useFetch';
 export default function Carousel({ count }) {
     const countArray = Array.from({ length: count }, (_, index) => index + 1);
+
+    const { data, error, loading } = useFetch('http://localhost:8000/restaurant')
+
+
+    if (loading) return (
+        <>
+            <div className="skeleton__image  gap-2 grid grid-cols-2 sm:hidden">
+                <div className="skeleton__image__item h-40 w-full bg-slate-500 animate-pulse rounded-md">
+                </div>
+                <div className="skeleton__image__item h-40 w-full bg-slate-500 animate-pulse rounded-md">
+                </div>
+            </div>
+
+            <div className="skeleton__image  sm:gap-2  sm:grid sm:grid-cols-5 hidden">
+                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
+                </div>
+                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
+                </div>
+                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
+                </div>
+                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
+                </div>
+                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
+                </div>
+            </div>
+        </>
+    )
+    if (error) return <h1>Error</h1>
+
     return (
         <>
             <Swiper
@@ -28,25 +63,26 @@ export default function Carousel({ count }) {
                 }}
                 className="mySwiper"
             >
-                {countArray.map((el, i) => (
+
+                {data?.data?.data.map((item, i) => (
                     <SwiperSlide key={i}>
                         <div className="restaurant__item group cursor-pointer">
                             <div className="restaurant__item__image overflow-hidden rounded-md">
-                                <img src="https://media-cdn.tripadvisor.com/media/photo-s/06/ca/7d/be/bar-35-food-drinks.jpg" alt="" className='w-full group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100 h-full' />
+                                <LazyLoadImage src={`${item.foodImage}`} effect="blur" delayTime='500' className='w-full group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100 h-full' />
                             </div>
                             <div className="restaurant__item__content mt-3 ">
                                 <div className="status flex justify-between items-center">
                                     <div className="statusOulet flex items-center gap-1">
-                                        <BiSolidTimeFive className='text-green-500' />
-                                        <span className='text-sm text-gray-500 font-karla'>Open</span>
+                                        {item.status === 'Open' ? <BiSolidTimeFive className='text-green-500 text-lg' /> : <BiSolidTimeFive className='text-red-500 text-lg' />}
+                                        <span className='text-sm text-gray-500 font-karla'>{item.status}</span>
                                     </div>
                                     <div className="review flex items-center gap-1 ">
                                         <AiFillStar className='text-yellow-400 text-lg ' />
-                                        <span className=' text-gray-500 font-karla text-[14px] font-bold block'>4,5</span>
+                                        <span className=' text-gray-500 font-karla text-[14px] font-bold block'>{item.rating}</span>
                                     </div>
                                 </div>
-                                <h1 className='text-lg font-outfits font-bold mt-2'>De Taste Food</h1>
-                                <p className='text-xs text-gray-500 mt-1 font-outfits'>Snack, Food, Beverages</p>
+                                <h1 className='text-lg font-outfits font-bold mt-2'>{item.foodName}</h1>
+                                <p className='text-xs text-gray-500 mt-1 font-outfits'>{item.foodType.map(x => x.name).join(', ')}</p>
                                 <div className="price">
                                     {/* <span className=' text-blue-500 text-lg font-rowdies block mt-3'>Rp. 100.000</span> */}
                                 </div>
@@ -62,7 +98,6 @@ export default function Carousel({ count }) {
                         </div>
                     </SwiperSlide>
                 ))}
-
             </Swiper>
         </>
     );
