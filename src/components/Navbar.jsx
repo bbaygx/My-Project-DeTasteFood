@@ -83,8 +83,8 @@ const Navbar = () => {
                     </ul> */}
         </div>
         <div className="flex gap-6">
-          <span className="text-sm font-bold text-gray-400">Daftar</span>
-          <span className="text-sm font-bold text-gray-400">Login</span>
+          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer">Daftar</span>
+          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer">Login</span>
         </div>
       </div>
 
@@ -159,8 +159,8 @@ const Navbar = () => {
               </button>
               <input
                 type="text"
-                placeholder="Search..."
-                className=" outline-none w-full max-w-xs"
+                placeholder="Mau makan apa hari ini?"
+                className=" outline-none w-full max-w-xs text-sm  py-1"
                 value={input}
                 onKeyDown={handleKeyDown}
                 onChange={(e) => setInput(e.target.value)}
@@ -229,11 +229,11 @@ const Navbar = () => {
         }}
         className="mySwiper flex py-5 space-x-3 overflow-x-hidden smooth-scroll scale-x-90 duration-300 justify-center"
       >
-        {dataKuliner.map((item) => (
-          <SwiperSlide className="my-5 m-auto">
+        {dataKuliner.map((item, i) => (
+          <SwiperSlide className="my-5 m-auto" key={i}>
             <a
               href={item.page}
-              className="px-8 py-8 text-center rounded-full font-medium"
+              className="px-8 py-8 text-center text-sm rounded-full font-medium"
               key={item.id}
             >
               {item.nama_kuliner}
