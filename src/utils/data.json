@@ -5,6 +5,11 @@
         "page": "makanan"
     },
     {
+        "id": "minuman",
+        "nama_kuliner": "Minuman",
+        "page": "minuman"
+    },
+    {
         "id": "jajanan",
         "nama_kuliner": "Jajanan",
         "page": "jajanan"

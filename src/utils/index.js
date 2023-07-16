@@ -4,7 +4,7 @@ import { AiOutlineHeart, AiFillHeart, AiOutlineSearch,AiFillStar } from "react-i
 import { HiOutlineMenuAlt2,HiOutlineMenuAlt4 } from "react-icons/hi"
 import {BsMenuApp,BsEmojiSmile,BsArrowRight} from "react-icons/bs"
 import {IoCall,IoFastFoodOutline} from "react-icons/io5"
-import {BiLogoGmail,BiSolidTimeFive} from "react-icons/bi"
+import {BiLogoGmail,BiSolidTimeFive,BiSearchAlt} from "react-icons/bi"
 import {LuCar} from "react-icons/lu"
 import dataKuliner from "./data.json"
 import cardItem from "./card.json"
@@ -15,7 +15,7 @@ import cardItem from "./card.json"
 export {IoCall, BsMenuApp, HiOutlineMenuAlt2,
      AiOutlineSearch, AiOutlineHeart
     ,MdDiscount, FiSearch,FiShoppingCart,HiOutlineMenuAlt4,BiLogoGmail,BiSolidTimeFive
-    ,LuCar,BsEmojiSmile,IoFastFoodOutline,AiFillHeart,AiFillStar,BsArrowRight
+    ,LuCar,BsEmojiSmile,IoFastFoodOutline,AiFillHeart,AiFillStar,BsArrowRight,BiSearchAlt
 }
 
 

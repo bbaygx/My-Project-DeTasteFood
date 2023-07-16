@@ -1,5 +1,4 @@
 import Card from "./Card";
-import Card_2 from "./Card_2";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -8,5 +7,8 @@ import SearchInput from "./SearchInput";
 import Main from "./Main";
 import Stats from "./Stats";
 import PageNotFound from "./PageNotFound";
+import SearchResult from "./SearchResult";
+import KulinerData from "./KulinerData";
+import LocationData from "./LocationData";
 
-export { Stats, Hero,PageNotFound, Navbar, Main,Card_2, Footer, Header, SearchInput, Card };
+export { Stats,LocationData, Hero,PageNotFound, Navbar, Main, Footer, Header, SearchInput, Card, SearchResult, KulinerData };

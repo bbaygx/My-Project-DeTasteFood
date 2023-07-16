@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Card,Card_2, Footer, Navbar, Hero, Header, Main, Stats } from '../components'
+import { Card, Footer, Navbar, Hero, Header, Main, Stats } from '../components'
 
 
 const Home = () => {
@@ -12,7 +12,6 @@ const Home = () => {
       <Main>
         <Stats/>
         <Card/>
-        <Card_2/>
       </Main>
     </>
   )

@@ -7,9 +7,9 @@ const Hero = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img src={HeroHamburger} className="max-w-xs sm:max-w-sm md:max-w-md rounded-lg shadow-2xl rotate-1 shadow-slate-500" />
           <div className='p-5'>
-            <h1 className="text-3xl font-bold">Promo Spesial! Nikmati Hamburger dan Kentang dengan Diskon 20%!</h1>
-            <p className="py-6">Rasakan kelezatan Hamburger dan Kentang kami dengan diskon spesial 20%!. Cobalah kombinasi sempurna antara Hamburger gurih dan Kentang renyah, sekarang dengan diskon 20%!</p>
-            <button className="btn btn-primary">Buy Now</button>
+            <h1 className="text-3xl font-bold">Selamat Datang Di Website De Taste Food, Menemukan Kemewahan Kuliner</h1>
+            <p className="py-6">Temukan pengalaman kuliner yang mewah dan tak terlupakan di outlet-outlet terbaik di kota ini. Mari jelajahi citarasa yang menggugah selera dan nikmati kelezatan yang tak terlupakan.</p>
+            <button className="btn btn-primary">Jelajahi Sekarang</button>
           </div>
         </div>
       </div>

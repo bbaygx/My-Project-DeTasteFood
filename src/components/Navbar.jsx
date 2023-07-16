@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { SearchInput } from "./";
+import { useNavigate, Link } from "react-router-dom";
 
 import {
   IoCall,
@@ -18,20 +19,30 @@ import {
   dataKuliner,
 } from "../utils";
 
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { GlobalProvider } from "../contexts/AuthContext";
 
 // import required modules
 import { Pagination } from "swiper/modules";
+import { useFilter, getByType } from "../api";
+import { useEffect } from "react";
 
 const Navbar = () => {
+  
+  const navigate = useNavigate();
+  const { searchItemValue, setSearchItemValue, getdataKuliner, setDataKuliner } = GlobalProvider();
+  
+  const {getDataKulinerValue, setDataKulinerValue} = useState([])
   const [openSearch, setOpenSearch] = useState(false);
   const [input, setInput] = useState([]);
   const [like, setLike] = useState(false);
+
 
   const openSearchToogle = () => {
     setOpenSearch((prev) => !prev);
@@ -40,26 +51,58 @@ const Navbar = () => {
     setLike((prev) => !prev);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const getSearchItem = async () => {
+      try {
+        const response = await useFilter(input);
+        const data = response.data;
+        setSearchItemValue(data);
+        // navigate(`/`);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getSearchItem();
+  }, []);
 
-    console.log(`Hasil Pencarian Dari : ${input}`);
-  };
+  const handleSubmit = async () => {
+    try{
+      const response = await useFilter(input)
+      const data = response.data
+      setSearchItemValue(data)
+      navigate(`/search?name=${input}`)
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
+    }catch(err){
+      console.log(err)
+      // navigate('*')
+    }      
+  
+};
 
-      document.getElementById("submit").click();
-    }
-  };
+const handleDataKuliner = async (e) => {
+  const type = e.target.text
+  try{
+    const response = await getByType(type)
+    const data = response.data
+    setDataKuliner(data)
+    navigate(`search/by?type=${type}`)
+  } catch(err){
+    // navigate('*')
+    console.log(err)
+  }
+
+  // handleDataKuliner()
+}
+
+// console.log(getDataKulinerValue)
+
 
   return (
     <>
       {/* Alert Info */}
       <div className="bg-gradient-to-r m-2 rounded-md shadow-md from-purple-500 to-pink-500  flex justify-center items-center gap-3 py-1">
         <MdDiscount className="text-xl text-yellow-400" />
-        <span className="text-sm font-bold text-slate-200">Promo 20%</span>
+        <span className="text-sm font-bold text-slate-200">Mengungkap Kelezatan Tersembunyi</span>
       </div>
 
       {/* Contact Info */}
@@ -73,18 +116,10 @@ const Navbar = () => {
           </a>
         </div>
         <div className="flex-none hidden sm:block">
-          {/* <ul className='flex gap-6'>
-                        <li>
-                            <a href="#">Testimonial</a>
-                        </li>
-                        <li>
-                            <a href="#">Tentang Kami</a>
-                        </li>
-                    </ul> */}
         </div>
         <div className="flex gap-6">
-          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer">Daftar</span>
-          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer">Login</span>
+          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer"></span>
+          <span className="text-sm font-bold text-gray-400 hover:text-slate-800 cursor-pointer"></span>
         </div>
       </div>
 
@@ -99,10 +134,10 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
+                {/* <li>
                   <a>Menu List</a>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <details open className="md:hidden">
                     <summary>Catalog</summary>
                     <ul>
@@ -114,26 +149,18 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </details>
-                </li>
+                </li> */}
                 <li>
-                  <a>Menu</a>
+                  <Link to="/restaurant">Menu</Link>
                 </li>
               </ul>
             </div>
-            <a className="font-bold normal-case text-base lg:text-xl">
+            <a className="font-bold normal-case text-base lg:text-xl" href="/">
               De Taste Food
             </a>
-
-            {/* <div className="dropdown dropdown-bottom fixed z-50 bg-white cursor-pointer shadow-md mx-2 p-3 rounded-md top-60  md:hidden">
-                            <BsMenuApp className='w-6 h-6' tabIndex={0} />
-                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
-                            </ul>
-                        </div> */}
           </div>
           <div className="navbar-center">
-            <div className="dropdown dropdown-bottom bg-base-100 py-1 px-5 font-medium cursor-pointer border-2 hidden md:flex md:gap-2 md:items-center md:rounded-full md:mr-3">
+            {/* <div className="dropdown dropdown-bottom bg-base-100 py-1 px-5 font-medium cursor-pointer border-2 hidden md:flex md:gap-2 md:items-center md:rounded-full md:mr-3">
               <HiOutlineMenuAlt4 className="w-5 h-5 cursor-pointer" />
               <label tabIndex={0} className="m-1 cursor-pointer">
                 Catalog
@@ -149,23 +176,22 @@ const Navbar = () => {
                   <a>Item 2</a>
                 </li>
               </ul>
-            </div>
-            <form
+            </div> */}
+            <div
               className="rounded-full py-1 px-3 border-2 border-gray-200 hidden sm:inline-flex gap-3 sm:ml-6"
-              onSubmit={handleSubmit}
             >
-              <button type="submit" id="submit">
-                <FiSearch className="w-5 h-5 text-gray-600" />
-              </button>
+
               <input
                 type="text"
                 placeholder="Mau makan apa hari ini?"
-                className=" outline-none w-full max-w-xs text-sm  py-1"
+                className=" outline-none w-full max-w-xs text-sm  py-1 input-key"
                 value={input}
-                onKeyDown={handleKeyDown}
                 onChange={(e) => setInput(e.target.value)}
               />
-            </form>
+                <button type="submit" id="search" onClick={handleSubmit}>
+                <FiSearch className="w-5 h-5 text-gray-600" id="search" />
+              </button>
+            </div>
           </div>
           <div className="navbar-end">
             <button
@@ -231,13 +257,14 @@ const Navbar = () => {
       >
         {dataKuliner.map((item, i) => (
           <SwiperSlide className="my-5 m-auto" key={i}>
-            <a
-              href={item.page}
+            <Link
+              to={`search/by?type=${item.page}`}
               className="px-8 py-8 text-center text-sm rounded-full font-medium"
               key={item.id}
+              onClick={handleDataKuliner}
             >
               {item.nama_kuliner}
-            </a>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

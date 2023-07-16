@@ -1,22 +1,23 @@
 import { Routes, Route } from "react-router-dom"
 import { Home, Restaurant } from './pages'
-import { Footer, Navbar } from './components'
+import { Footer, Navbar, PageNotFound, SearchResult,KulinerData, LocationData } from './components'
+import AuthContext from './contexts/AuthContext'
 
 function App() {
   return (
     <>
+    <AuthContext>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-
-        <Route path="user">
-          <Route path="login" />
-          <Route path="daftar" />
-        </Route>
-        <Route path='/restaurant/:region' element={<Restaurant />} />
-        <Route path="*" element={<h1>Page Not Found</h1>} />
+        <Route path='/restaurant' element={<Restaurant />} />
+        <Route path='/search' element={<SearchResult />} />
+        <Route path='/search/by/' element={<KulinerData />} />
+        <Route path='/restaurant/region' element={<LocationData />} />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
       <Footer />
+      </AuthContext>
     </>
   )
 }

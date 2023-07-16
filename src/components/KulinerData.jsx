@@ -1,81 +1,61 @@
-import { useState, useEffect } from 'react';
+import React,{useEffect, useState} from 'react'
+import Cart_Item_1 from "../assets/cart_item_1.webp"
+import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight } from "../utils"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { BiSolidTimeFive,AiFillStar } from "../utils"
+import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import axios from 'axios';
-import { cardItem } from '../utils';
-
 import GrabFood from '../assets/grabfood.png'
 import GoFood from '../assets/gofood.png'
-import { Link } from 'react-router-dom';
-
-import { useFetch } from '../api';
+import { GlobalProvider } from '../contexts/AuthContext';
 
 
-// import { useQuery } from 'react-query';
-export default function Carousel() {
+import { useFilter } from '../api';
 
-    const [data, setData] = useState([]);
+const KulinerData = () => {
 
-    useEffect(()=>{
-      const fetchData = async () => {
-        const data = await useFetch();
-        setData(data);
-      }
-      fetchData();
-    },[])
-    
-
-
-
-     return (
-        <>
-            {/* <div className="skeleton__image  gap-2 grid grid-cols-2 sm:hidden">
-                <div className="skeleton__image__item h-40 w-full bg-slate-500 animate-pulse rounded-md">
-                </div>
-                <div className="skeleton__image__item h-40 w-full bg-slate-500 animate-pulse rounded-md">
-                </div>
-            </div>
-
-            <div className="skeleton__image  sm:gap-2  sm:grid sm:grid-cols-5 hidden">
-                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
-                </div>
-                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
-                </div>
-                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
-                </div>
-                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
-                </div>
-                <div className="skeleton__image__item h-52 w-full bg-slate-300 animate-pulse rounded-md">
-                </div>
-            </div> */}
-            <Swiper
-                slidesPerView={2}
-                spaceBetween={20}
-                pagination={{
-                    clickable: true,
-                }}
-                breakpoints={{
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 20,
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                    },
-                }}
-                className="mySwiper"
-            >
-
-{data.data && data.data.map(outlet => (
+    const {getdataKuliner} = GlobalProvider()
+  
+  return (
+    <>
+<div className="my-24 w-[90%] m-auto">
+  <div className="flex justify-between py-7 px-3">
+  <h1 className='text-xl sm:text-2xl font-semibold'>{}</h1>
+  {/* <Link to="restaurant/jakarta" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight/></Link> */}
+  </div>
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={20}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          400:{
+            slidesPerView: 2
+          },
+          460: {
+            slidesPerView: 2,
+          },
+          512: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+        }}
+        className="mySwiper"
+      >
+    {getdataKuliner && getdataKuliner.map(outlet => (
           <SwiperSlide key={outlet._id}>
-                        <div className="restaurant__item group cursor-pointer shadow-sm">
+                        <div className="restaurant__item group cursor-pointer px-5 shadow-sm">
                             <div className="restaurant__item__image overflow-hidden rounded-md">
                                 <img src={outlet.foodImage} alt="" className='h-48 w-56 group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
                             </div>
@@ -112,7 +92,12 @@ export default function Carousel() {
                         </div>
           </SwiperSlide>
         ))}
-            </Swiper>
-        </>
-    );
+
+      </Swiper>
+</div>
+    </>
+  )
 }
+
+export default KulinerData
+
