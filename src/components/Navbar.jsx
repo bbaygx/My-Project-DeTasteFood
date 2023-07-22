@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { SearchInput } from "./";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 
 import {
   IoCall,
@@ -42,6 +42,7 @@ const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [input, setInput] = useState([]);
   const [like, setLike] = useState(false);
+  const [saveParams, setSaveParams] = useState('Makanan')
 
 
   const openSearchToogle = () => {
@@ -76,11 +77,17 @@ const Navbar = () => {
       console.log(err)
       // navigate('*')
     }      
-  
 };
 
+
+
+
+
+
 const handleDataKuliner = async (e) => {
+
   const type = e.target.text
+  
   try{
     const response = await getByType(type)
     const data = response.data
@@ -90,11 +97,12 @@ const handleDataKuliner = async (e) => {
     // navigate('*')
     console.log(err)
   }
-
-  // handleDataKuliner()
 }
-
 // console.log(getDataKulinerValue)
+
+// useEffect(()=>{
+//   handleDataKuliner('Minuman')
+// })
 
 
   return (
@@ -257,14 +265,14 @@ const handleDataKuliner = async (e) => {
       >
         {dataKuliner.map((item, i) => (
           <SwiperSlide className="my-5 m-auto" key={i}>
-            <Link
+            <NavLink
               to={`search/by?type=${item.page}`}
               className="px-8 py-8 text-center text-sm rounded-full font-medium"
               key={item.id}
               onClick={handleDataKuliner}
             >
               {item.nama_kuliner}
-            </Link>
+            </NavLink>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -10,5 +10,6 @@ import PageNotFound from "./PageNotFound";
 import SearchResult from "./SearchResult";
 import KulinerData from "./KulinerData";
 import LocationData from "./LocationData";
+import ChangeRegion from "./ChangeRegion";
 
-export { Stats,LocationData, Hero,PageNotFound, Navbar, Main, Footer, Header, SearchInput, Card, SearchResult, KulinerData };
+export { Stats,LocationData,ChangeRegion, Hero,PageNotFound, Navbar, Main, Footer, Header, SearchInput, Card, SearchResult, KulinerData };
