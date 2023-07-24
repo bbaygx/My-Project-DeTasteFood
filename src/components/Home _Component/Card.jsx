@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Cart_Item_1 from "../assets/cart_item_1.webp"
-import { cardItem, BiSolidTimeFive, AiFillStar, BsArrowRight } from "../utils"
+import Cart_Item_1 from "../../assets/cart_item_1.webp"
+import { cardItem, BiSolidTimeFive, AiFillStar, BsArrowRight } from "../../utils"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import GrabFood from '../assets/grabfood.png'
-import GoFood from '../assets/gofood.png'
+import GrabFood from '../../assets/grabfood.png'
+import GoFood from '../../assets/gofood.png'
 
 
-import { useFetch } from '../api';
+import { useFetch } from '../../api';
 
 const Card = () => {
 
@@ -65,7 +65,7 @@ const Card = () => {
             <SwiperSlide key={outlet._id}>
               <div className="restaurant__item group cursor-pointer shadow-sm">
                 <div className="restaurant__item__image overflow-hidden rounded-md">
-                  <img src={outlet.foodImage} alt="" className='h-48 w-56 group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
+                  <img src={outlet.foodImage} alt="" className='h-48 w-56 min-[512px]:w-full group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
                 </div>
                 <div className="restaurant__item__content mt-3 ">
                   <div className="status flex justify-between items-center">

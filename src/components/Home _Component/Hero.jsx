@@ -1,5 +1,5 @@
 import React from 'react'
-import HeroHamburger from "../assets/hero_hamburger_2.jpg"
+import HeroHamburger from "../../assets/hero_hamburger_2.jpg"
 import { Link } from 'react-router-dom'
 const Hero = () => {
   return (

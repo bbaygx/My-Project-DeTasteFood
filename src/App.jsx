@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import { Home, Restaurant } from './pages'
-import { Footer, Navbar, PageNotFound, SearchResult,KulinerData, LocationData } from './components'
+import { Footer, Navbar, PageNotFound, SearchResult,KulinerData, LocationData,RegionData } from './components'
 import AuthContext from './contexts/AuthContext'
 
 function App() {
@@ -11,9 +11,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/restaurant' element={<Restaurant />} />
-        <Route path='/search' element={<SearchResult />} />
-        <Route path='/search/by/' element={<KulinerData />} />
+        <Route path='/search/by/type/:type' element={<KulinerData />} />
+        <Route path='/search/by/:name' element={<SearchResult />} />
         <Route path='/restaurant/region' element={<LocationData />} />
+        <Route path='/restaurant/region/:region' element={<RegionData />} />
         <Route path="*" element={<PageNotFound/>} />
       </Routes>
       <Footer />

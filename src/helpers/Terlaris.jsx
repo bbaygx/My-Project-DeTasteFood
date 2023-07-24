@@ -15,7 +15,7 @@ import { useFetch } from '../api';
 
 
 // import { useQuery } from 'react-query';
-export default function Carousel() {
+export default function Terlaris() {
 
     const [data, setData] = useState([]);
 
@@ -27,8 +27,6 @@ export default function Carousel() {
       fetchData();
     },[])
     
-
-
 
      return (
         <>

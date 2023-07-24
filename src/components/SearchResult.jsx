@@ -2,26 +2,44 @@ import React,{useEffect, useState} from 'react'
 import Cart_Item_1 from "../assets/cart_item_1.webp"
 import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt } from "../utils"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import ChangeRegion from './ChangeRegion';
-import { Link } from 'react-router-dom';
+import ChangeRegion from './Restaurant_Component/ChangeRegion';
+import { Link, useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import GrabFood from '../assets/grabfood.png'
 import GoFood from '../assets/gofood.png'
 import { GlobalProvider } from '../contexts/AuthContext';
 
-
 import { useFilter } from '../api';
 
 const SearchResult = () => {
 
-    const {searchItemValue} = GlobalProvider()
+  const [dataName, setDataName] = useState([])
+
+  const {name} = useParams()
   
+  // console.log(name)
+
+
+  useEffect(()=>{
+    const fetchDataByName = async () => {
+      try{
+        const res = await useFilter(name)
+        const data = res.data
+        setDataName(data)
+      } catch(err){
+        console.log('Data Tidak Di Temukan')
+      }
+    } 
+    fetchDataByName()
+  },[name])
+
+
   return (
     <>
 <div className="my-24 w-[90%] m-auto">
 <div className="flex justify-between py-7 px-3">
-  <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pencarian</h1>
+  <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pencarian : "{name}"</h1>
   {/* <Link to="restaurant/jakarta" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight/></Link> */}
   </div>
       <Swiper
@@ -54,11 +72,11 @@ const SearchResult = () => {
         }}
         className="mySwiper"
       >
-    {searchItemValue && searchItemValue.map(outlet => (
+    {dataName && dataName.map(outlet => (
           <SwiperSlide key={outlet._id}>
-          <div className="restaurant__item group cursor-pointer px-5 shadow-sm">
+          <div className="restaurant__item group cursor-pointer shadow-sm">
               <div className="restaurant__item__image overflow-hidden rounded-md">
-                  <img src={outlet.foodImage} alt="" className='h-48 w-56 group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
+                  <img src={outlet.foodImage} alt="" className='h-48 w-56 min-[512px]:w-full group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
               </div>
               <div className="restaurant__item__content mt-3 ">
                   <div className="status flex justify-between items-center">

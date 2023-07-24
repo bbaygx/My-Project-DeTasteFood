@@ -1,31 +1,27 @@
 import React,{useEffect, useState} from 'react'
-import Cart_Item_1 from "../assets/cart_item_1.webp"
-import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt } from "../utils"
+import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt } from "../../utils"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import GrabFood from '../assets/grabfood.png'
-import GoFood from '../assets/gofood.png'
-import { GlobalProvider } from '../contexts/AuthContext';
+import GrabFood from '../../assets/grabfood.png'
+import GoFood from '../../assets/gofood.png'
 import ChangeRegion from './ChangeRegion';
+import { GlobalProvider } from '../../contexts/AuthContext';
 
-
-import { getByLocation } from '../api';
 
 const LocationData = () => {
 
-    const {getLocation} = GlobalProvider()
-    const navigate = useNavigate()
+  const {getLocation} = GlobalProvider()
 
   
+
   return (
     <>
 <ChangeRegion/>
 <div className="my-24 w-[90%] m-auto">
-  <div className="flex justify-between py-7 px-3">
+  {/* <div className="flex justify-between py-7 px-3">
   <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pencarian</h1>
-  {/* <Link to="restaurant/jakarta" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight/></Link> */}
   </div>
       <Swiper
         slidesPerView={2}
@@ -61,7 +57,7 @@ const LocationData = () => {
           <SwiperSlide key={outlet._id}>
           <div className="restaurant__item group cursor-pointer shadow-sm">
               <div className="restaurant__item__image overflow-hidden rounded-md">
-                  <img src={outlet.foodImage} alt="" className='h-48 w-56 group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
+                  <img src={outlet.foodImage} alt="" className='h-48 w-56 min-[512px]:w-full group-hover:scale-105 object-cover duration-300 transition-all group-hover:brightness-75 brightness-100' />
               </div>
               <div className="restaurant__item__content mt-3 ">
                   <div className="status flex justify-between items-center">
@@ -86,10 +82,8 @@ const LocationData = () => {
                   </div>
                   <div className="checkOut flex items-center gap-6 mt-3  ">
                       <div className="buy">
-                          {/* <button className='bg-slate-100 text-slate-800 font-karla shadow-sm  px-4 py-2 rounded-md '>Buy</button> */}
                       </div>
                       <div className="heart ">
-                          {/* <AiOutlineHeart className='text-2xl' /> */}
                       </div>
                   </div>
               </div>
@@ -97,7 +91,7 @@ const LocationData = () => {
 </SwiperSlide>
         ))}
 
-      </Swiper>
+      </Swiper> */}
 
       <div>
         <Link to="/" className='text-blue-600 mt-10 underline flex items-center'>

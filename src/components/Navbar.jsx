@@ -19,7 +19,6 @@ import {
   dataKuliner,
 } from "../utils";
 
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -52,59 +51,16 @@ const Navbar = () => {
     setLike((prev) => !prev);
   };
 
-  useEffect(() => {
-    const getSearchItem = async () => {
-      try {
-        const response = await useFilter(input);
-        const data = response.data;
-        setSearchItemValue(data);
-        // navigate(`/`);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getSearchItem();
-  }, []);
 
-  const handleSubmit = async () => {
-    try{
-      const response = await useFilter(input)
-      const data = response.data
-      setSearchItemValue(data)
-      navigate(`/search?name=${input}`)
-
-    }catch(err){
-      console.log(err)
-      // navigate('*')
-    }      
-};
+  const handleSubmit = () => {
+    navigate(`/search/by/${input}`);
+  };
 
 
-
-
-
-
-const handleDataKuliner = async (e) => {
-
-  const type = e.target.text
-  
-  try{
-    const response = await getByType(type)
-    const data = response.data
-    setDataKuliner(data)
-    navigate(`search/by?type=${type}`)
-  } catch(err){
-    // navigate('*')
-    console.log(err)
+  const handleDataKuliner = (e) => {
+    navigate(`/search/by/type/${e.target.innerText}`)
+    
   }
-}
-// console.log(getDataKulinerValue)
-
-// useEffect(()=>{
-//   handleDataKuliner('Minuman')
-// })
-
-
   return (
     <>
       {/* Alert Info */}
@@ -142,24 +98,11 @@ const handleDataKuliner = async (e) => {
                 tabIndex={0}
                 className="dropdown-content z-[4] menu p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {/* <li>
-                  <a>Menu List</a>
-                </li> */}
-                {/* <li>
-                  <details open className="md:hidden">
-                    <summary>Catalog</summary>
-                    <ul>
-                      <li>
-                        <a>item 1</a>
-                      </li>
-                      <li>
-                        <a>item 2</a>
-                      </li>
-                    </ul>
-                  </details>
-                </li> */}
                 <li>
-                  <Link to="/restaurant">Menu</Link>
+                  <Link to="/restaurant/region">Pilih Region</Link>
+                </li>
+                <li>
+                  <Link to="/restaurant/">Restaurants</Link>
                 </li>
               </ul>
             </div>
@@ -168,23 +111,6 @@ const handleDataKuliner = async (e) => {
             </a>
           </div>
           <div className="navbar-center">
-            {/* <div className="dropdown dropdown-bottom bg-base-100 py-1 px-5 font-medium cursor-pointer border-2 hidden md:flex md:gap-2 md:items-center md:rounded-full md:mr-3">
-              <HiOutlineMenuAlt4 className="w-5 h-5 cursor-pointer" />
-              <label tabIndex={0} className="m-1 cursor-pointer">
-                Catalog
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[2] menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Item 2</a>
-                </li>
-              </ul>
-            </div> */}
             <div
               className="rounded-full py-1 px-3 border-2 border-gray-200 hidden sm:inline-flex gap-3 sm:ml-6"
             >
@@ -266,7 +192,7 @@ const handleDataKuliner = async (e) => {
         {dataKuliner.map((item, i) => (
           <SwiperSlide className="my-5 m-auto" key={i}>
             <NavLink
-              to={`search/by?type=${item.page}`}
+              to={`search/by/type/${item.id}`}
               className="px-8 py-8 text-center text-sm rounded-full font-medium"
               key={item.id}
               onClick={handleDataKuliner}

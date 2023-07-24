@@ -8,19 +8,11 @@ const SearchInput = ({ openSearch }) => {
 
     const navigate = useNavigate()
     const [searchItem, setSearchItem] = useState('')
-    const {searchItemValue, setSearchItemValue} = GlobalProvider()
     
 
-    const getSearchItem = async () => {
-       try {
-        const response = await useFilter(searchItem)
-        const data = response.data
-        setSearchItemValue(data)
-       navigate(`/search?name=${searchItem}`)
-       }catch(err){
-           console.log(err)
-       }
-        
+    const getSearchItem = (e) => {
+        e.preventDefault()
+        navigate(`/search/by/${searchItem}`)
     }
     
 
