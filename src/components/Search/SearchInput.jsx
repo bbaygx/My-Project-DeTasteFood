@@ -1,8 +1,8 @@
 import React,{useRef, useState} from 'react'
-import {AiOutlineSearch} from "../utils"
+import {AiOutlineSearch} from "../../utils"
 import { useNavigate } from 'react-router-dom'
-import { useFilter} from "../api"
-import { GlobalProvider } from '../contexts/AuthContext'
+import { useFilter} from "../../api"
+import { GlobalProvider } from '../../contexts/AuthContext'
 
 const SearchInput = ({ openSearch }) => {
 

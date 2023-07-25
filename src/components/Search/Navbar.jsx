@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { SearchInput } from "./";
+import { SearchInput } from "..";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 
 import {
@@ -17,7 +17,7 @@ import {
 
   // Kuliner Data
   dataKuliner,
-} from "../utils";
+} from "../../utils";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,11 +25,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { GlobalProvider } from "../contexts/AuthContext";
+import { GlobalProvider } from "../../contexts/AuthContext";
 
 // import required modules
 import { Pagination } from "swiper/modules";
-import { useFilter, getByType } from "../api";
+import { useFilter, getByType } from "../../api";
 import { useEffect } from "react";
 
 const Navbar = () => {
@@ -58,7 +58,7 @@ const Navbar = () => {
 
 
   const handleDataKuliner = (e) => {
-    navigate(`/search/by/type/${e.target.innerText}`)
+    navigate(`/search/by/${e.target.innerText}`)
     
   }
   return (
