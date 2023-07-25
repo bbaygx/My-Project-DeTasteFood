@@ -101,9 +101,9 @@ const Navbar = () => {
                 <li>
                   <Link to="/restaurant/region">Pilih Region</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/restaurant/">Restaurants</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <a className="font-bold normal-case text-base lg:text-xl" href="/">
