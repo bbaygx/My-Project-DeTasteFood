@@ -20,8 +20,6 @@ const SearchResult = () => {
 
   const {name, region} = useParams()
   
-  // console.log(name)
-
 
   useEffect(()=>{
     const fetchDataByName = async () => {
