@@ -1,15 +1,16 @@
 import React,{useEffect, useState} from 'react'
 import Cart_Item_1 from "../../assets/cart_item_1.webp"
-import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt } from "../../utils"
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt,HiLocationMarker } from "../../utils"
 import { Link, useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import GrabFood from '../../assets/grabfood.png'
 import GoFood from '../../assets/gofood.png'
 import { GlobalProvider } from '../../contexts/AuthContext';
-
-
+import SelectKulinerRegion from './SelectKulinerRegion';
+import Swal from 'sweetalert2';
 
 import { getByType } from '../../api';
 
@@ -26,7 +27,11 @@ const KulinerData = () => {
         const data = res.data
         setDataKuliner(data)
       } catch(err){
-        console.log('Data Tidak Di Temukan')
+        Swal.fire({
+          icon: 'warning',
+          title: 'Data Tidak Ditemukan',
+          text: 'Data untuk wilayah ini tidak tersedia.',
+        });
       }
     } 
     fetchDataByType()
@@ -37,8 +42,8 @@ const KulinerData = () => {
     <>
 <div className="my-24 w-[90%] m-auto">
   <div className="flex justify-between pb-10">
-  <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pilihan Kamu : "{type}"</h1>
-  {/* <Link to="restaurant/jakarta" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight/></Link> */}
+  <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pilihan Kamu : "<span className='text-green-700'>{type}</span>"</h1>
+    <SelectKulinerRegion/>
   </div>
       <Swiper
         slidesPerView={2}
@@ -79,23 +84,29 @@ const KulinerData = () => {
               <div className="restaurant__item__content mt-3 ">
                   <div className="status flex justify-between items-center">
                       <div className="statusOulet flex items-center gap-1">
-                          <BiSolidTimeFive className='text-green-500' />
+                      <BiSolidTimeFive className={outlet.status.toLowerCase() == "open" ? 'text-green-500' : 'text-red-500'} />
                           <span className='text-sm text-gray-500 font-karla'>{outlet.status}</span>
                       </div>
                       <div className="review flex items-center gap-1 ">
                           <AiFillStar className='text-yellow-400 text-lg ' />
-                          <span className=' text-gray-500 font-karla text-[14px] font-bold block'>4,5</span>
+                          <span className=' text-gray-500 font-karla text-[14px] font-bold block'>{outlet.rating}</span>
                       </div>
                   </div>
                   <h1 className='text-lg font-outfits font-bold mt-2'>{outlet.foodName}</h1>
                   <p className='text-xs text-gray-500 mt-1 font-outfits'>{outlet.foodType.join(", ")}</p>
-                  <div className="platform flex justify-end items-center pt-3 gap-3">
-                    <Link to={outlet.goFoodLink}>
+                  <div className="flex justify-between pt-6 items-center">
+                  <div className='location text-gray-600 flex gap-2 items-center'>
+                      <span className='text-red-600 text-xl'><HiLocationMarker/></span>
+                      <span className='text-sm'>{outlet.region}</span>
+                  </div>
+                      <div className="platform flex gap-3">
+                      <Link to={outlet.goFoodLink}>
                     <img src={outlet.goFoodLink ? GoFood : ""} alt="" className='w-6 h-6'/>
                     </Link>
                     <Link to={outlet.grabFoodLink}>
                     <img src={outlet.grabFoodLink ? GrabFood : ""} alt="" className='w-6 h-6'/>
                     </Link>
+                      </div>
                   </div>
                   <div className="checkOut flex items-center gap-6 mt-3  ">
                       <div className="buy">

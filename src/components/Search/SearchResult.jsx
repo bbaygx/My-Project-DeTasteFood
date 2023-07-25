@@ -1,67 +1,84 @@
-import React, { useEffect, useState } from 'react'
+import React,{useEffect, useState} from 'react'
 import Cart_Item_1 from "../../assets/cart_item_1.webp"
-import { cardItem, BiSolidTimeFive, AiFillStar, BsArrowRight,HiLocationMarker } from "../../utils"
+import { cardItem,BiSolidTimeFive,AiFillStar,BsArrowRight,BiLeftArrowAlt,HiLocationMarker } from "../../utils"
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
+import ChangeRegion from '../Restaurant_Component/ChangeRegion';
+import { Link, useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import GrabFood from '../../assets/grabfood.png'
 import GoFood from '../../assets/gofood.png'
+import { GlobalProvider } from '../../contexts/AuthContext';
+import SearchByRegion from './SearchByRegion';
+
+import { getSearchByTypeAndLocation } from '../../api';
+import Swal from 'sweetalert2';
+
+const SearchResult = () => {
+
+  const [dataName, setDataName] = useState([])
+
+  const {name, region} = useParams()
+  
+  // console.log(name)
 
 
-import { useFetch } from '../../api';
+  useEffect(()=>{
+    const fetchDataByName = async () => {
+      try{
+        const res = await getSearchByTypeAndLocation(name, region)
+        const data = res.data
+        setDataName(data)
+      } catch(err){
+        Swal.fire({
+          icon: 'warning',
+          title: 'Data Tidak Ditemukan',
+          text: 'Data untuk wilayah ini tidak tersedia.',
+        });
+      }
+    } 
+    fetchDataByName()
+  },[name, region])
 
-const Card = () => {
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedData = await useFetch();
-      setData(fetchedData);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>
-      <div className="my-24 w-[90%] m-auto">
-        <div className="flex justify-between py-7 px-3">
-          <h1 className='text-xl sm:text-2xl font-semibold'>Recomanded For You</h1>
-          <a href="restaurant/region" className='sm:text-xl font-medium flex items-center gap-2'>See all <BsArrowRight /></a>
-        </div>
-        <Swiper
-          slidesPerView={2}
-          spaceBetween={20}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            400: {
-              slidesPerView: 2
-            },
-            460: {
-              slidesPerView: 2,
-            },
-            512: {
-              slidesPerView: 2,
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 5,
-            },
-          }}
-          className="mySwiper"
-        >
-          {data.data && data.data.map(outlet => (
+<div className="my-24 w-[90%] m-auto">
+<div className="flex justify-between py-7 px-3">
+  <h1 className='text-xl sm:text-2xl font-semibold'>Hasil Pencarian : <span className='text-green-700'>"{name}"</span> {region ?  ( <> <span>Daerah</span> <span className='text-green-600'>"{region}"</span></>) : ""} </h1>
+  <SearchByRegion/>
+  </div>
+      <Swiper
+        slidesPerView={2}
+        spaceBetween={20}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          400:{
+            slidesPerView: 2
+          },
+          460: {
+            slidesPerView: 2,
+          },
+          512: {
+            slidesPerView: 2,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 5,
+          },
+        }}
+        className="mySwiper"
+      >
+    {dataName && dataName.map(outlet => (
           <SwiperSlide key={outlet._id}>
           <div className="restaurant__item group cursor-pointer shadow-sm">
               <div className="restaurant__item__image overflow-hidden rounded-md">
@@ -105,13 +122,22 @@ const Card = () => {
               </div>
           </div>
 </SwiperSlide>
-          ))}
+        ))}
 
-        </Swiper>
+      </Swiper>
+      
+      <div className='mt-10'>
+        <Link to="/" className='text-blue-600 underline flex items-center'>
+          <span><BiLeftArrowAlt className='text-xl'/></span>
+          <span>Kembali Ke Halaman Home</span>
+        </Link>
       </div>
+
+</div>
+
     </>
   )
 }
 
-export default Card
+export default SearchResult
 

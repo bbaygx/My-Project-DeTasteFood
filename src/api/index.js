@@ -33,3 +33,23 @@ export const getByLocation = async (region) => {
     });
     return outlet.data;
 }
+
+export const getByTypeAndLocation = async (type, region,name) => {
+    const outlet = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/restaurant`, {
+        params : {
+            type : type,
+            region : region,
+        }
+    });
+    return outlet.data;
+}
+
+export const getSearchByTypeAndLocation = async (name, region) => {
+    const outlet = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/restaurant`, {
+        params : {
+            name : name,
+            region : region,
+        }
+    });
+    return outlet.data;
+}
